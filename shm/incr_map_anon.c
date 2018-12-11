@@ -15,8 +15,8 @@ main(int argc, char **argv)
 	nloop = atoi(argv[1]);
 
 		/* 4map into memory */
-	ptr = Mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,
-			   MAP_SHARED | MAP_ANON, -1, 0);
+	//匿名内存映射(anonymous memory mapping)
+	ptr = Mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
 /* end diff */
 
 		/* 4create, initialize, and unlink semaphore */

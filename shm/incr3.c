@@ -22,6 +22,7 @@ main(int argc, char **argv)
 	Close(fd);
 
 		/* 4initialize semaphore that is shared between processes */
+	//与incr2不同的是用基于内存的信号量代替一个有名信号量
 	Sem_init(&ptr->mutex, 1, 1);
 
 	setbuf(stdout, NULL);	/* stdout is unbuffered */
