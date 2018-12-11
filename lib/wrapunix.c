@@ -207,8 +207,8 @@ Munmap(void *addr, size_t len)
 
 #ifdef	HAVE_MQUEUE_H
 
-mqd_t
-Mq_open(const char *pathname, int oflag, ...)
+//准确地看出mq_open如何处理Posix IPC名字
+mqd_t Mq_open(const char *pathname, int oflag, ...)
 {
 	mqd_t	mqd;
 	va_list	ap;
@@ -236,29 +236,25 @@ Mq_open(const char *pathname, int oflag, ...)
 	return(mqd);
 }
 
-void
-Mq_close(mqd_t mqd)
+void Mq_close(mqd_t mqd)
 {
 	if (mq_close(mqd) == -1)
 		err_sys("mq_close error");
 }
 
-void
-Mq_unlink(const char *pathname)
+void Mq_unlink(const char *pathname)
 {
 	if (mq_unlink(pathname) == -1)
 		err_sys("mq_unlink error");
 }
 
-void
-Mq_send(mqd_t mqd, const char *ptr, size_t len, unsigned int prio)
+void Mq_send(mqd_t mqd, const char *ptr, size_t len, unsigned int prio)
 {
 	if (mq_send(mqd, ptr, len, prio) == -1)
 		err_sys("mq_send error");
 }
 
-ssize_t
-Mq_receive(mqd_t mqd, char *ptr, size_t len, unsigned int *prio)
+ssize_t Mq_receive(mqd_t mqd, char *ptr, size_t len, unsigned int *prio)
 {
 	ssize_t	n;
 
@@ -267,8 +263,7 @@ Mq_receive(mqd_t mqd, char *ptr, size_t len, unsigned int *prio)
 	return(n);
 }
 
-void
-Mq_notify(mqd_t mqd, const struct sigevent *notification)
+void Mq_notify(mqd_t mqd, const struct sigevent *notification)
 {
 	if (mq_notify(mqd, notification) == -1)
 		err_sys("mq_notify error");
@@ -276,15 +271,13 @@ Mq_notify(mqd_t mqd, const struct sigevent *notification)
 		printf("notice complete ...\n");
 }
 
-void
-Mq_getattr(mqd_t mqd, struct mq_attr *mqstat)
+void Mq_getattr(mqd_t mqd, struct mq_attr *mqstat)
 {
 	if (mq_getattr(mqd, mqstat) == -1)
 		err_sys("mq_getattr error");
 }
 
-void
-Mq_setattr(mqd_t mqd, const struct mq_attr *mqstat, struct mq_attr *omqstat)
+void Mq_setattr(mqd_t mqd, const struct mq_attr *mqstat, struct mq_attr *omqstat)
 {
 	if (mq_setattr(mqd, mqstat, omqstat) == -1)
 		err_sys("mq_setattr error");
@@ -292,8 +285,7 @@ Mq_setattr(mqd_t mqd, const struct mq_attr *mqstat, struct mq_attr *omqstat)
 #endif	/* HAVE_SYS_MSG_H */
 
 #ifdef	HAVE_SYS_MSG_H
-int
-Msgget(key_t key, int flag)
+int Msgget(key_t key, int flag)
 {
 	int		rc;
 
@@ -302,15 +294,13 @@ Msgget(key_t key, int flag)
 	return(rc);
 }
 
-void
-Msgctl(int id, int cmd, struct msqid_ds *buf)
+void Msgctl(int id, int cmd, struct msqid_ds *buf)
 {
 	if (msgctl(id, cmd, buf) == -1)
 		err_sys("msgctl error");
 }
 
-void
-Msgsnd(int id, const void *ptr, size_t len, int flag)
+void Msgsnd(int id, const void *ptr, size_t len, int flag)
 {
 	if (msgsnd(id, ptr, len, flag) == -1)
 		err_sys("msgsnd error");

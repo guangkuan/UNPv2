@@ -1,8 +1,8 @@
 /* include px_ipc_name */
 #include	"unpipc.h"
 
-char *
-px_ipc_name(const char *name)
+//为定位Posix IPC名字而添加上正确的前缀目录
+char* px_ipc_name(const char *name)
 {
 	char	*dir, *dst, *slash;
 
