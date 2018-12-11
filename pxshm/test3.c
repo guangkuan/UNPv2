@@ -16,6 +16,7 @@ int main(int argc, char **argv)
 	Fstat(fd2, &stat);
 
 	//父子进程中指针ptr1都指向同一共享内存区，即使每个指针在各自进程内有不同的值也不受影响
+	//所指定的共享内存区对象在父子进程中被内存映射到不同的起始地址
 	if ( (childpid = Fork()) == 0) 
 	{
 			/* 4child */
