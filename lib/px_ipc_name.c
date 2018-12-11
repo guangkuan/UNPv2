@@ -25,8 +25,7 @@ char* px_ipc_name(const char *name)
 }
 /* end px_ipc_name */
 
-char *
-Px_ipc_name(const char *name)
+char* Px_ipc_name(const char *name)
 {
 	char	*ptr;
 

@@ -1,7 +1,6 @@
 #include	"unpipc.h"
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int		i, fd;
 	struct stat	stat;
@@ -12,6 +11,7 @@ main(int argc, char **argv)
 
 		/* 4open, get size, map */
 	fd = Shm_open(argv[1], O_RDWR, FILE_MODE);
+	//当打开一个已存在的共享内存区对象时，可调用fstat来获取有关该对象的信息
 	Fstat(fd, &stat);
 	ptr = Mmap(NULL, stat.st_size, PROT_READ | PROT_WRITE,
 			   MAP_SHARED, fd, 0);

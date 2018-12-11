@@ -1,7 +1,6 @@
 #include	"cliserv2.h"
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int		fd, index, lastnoverflow, temp;
 	long	offset;
@@ -18,6 +17,7 @@ main(int argc, char **argv)
 	Close(fd);
 
 		/* 4initialize the array of offsets */
+	//把偏移量数组msgoff初始化为含有每个消息的位置偏移
 	for (index = 0; index < NMESG; index++)
 		ptr->msgoff[index] = index * MESGSIZE;
 
@@ -44,6 +44,7 @@ main(int argc, char **argv)
 		Sem_wait(&ptr->noverflowmutex);
 		temp = ptr->noverflow;		/* don't printf while mutex held */
 		Sem_post(&ptr->noverflowmutex);
+		//应该把持有某个互斥锁期间执行的代码编写得操作总数尽量地少
 		if (temp != lastnoverflow) 
 		{
 			printf("noverflow = %d\n", temp);
