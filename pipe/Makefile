@@ -1,7 +1,8 @@
 include ../Make.defines
 
 PROGS =	mainpipe mainpopen mainfifo \
-		client_fifo server_fifo pipeconf test1 test2 fduplex
+		client_fifo server_fifo \
+		pipeconf test1 test2 fduplex
 
 all:	${PROGS}
 
